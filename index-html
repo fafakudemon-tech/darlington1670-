@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darlington1670</title>
+<meta name="description" content="Darlington1670 - Digital links, resources, tutorials and useful online tools.">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+body { background:#0b0b0f; color:white; min-height:100vh; }
+button,input,textarea,select { font:inherit; }
+header { width:100%; background:rgba(17,17,22,0.85); backdrop-filter:blur(12px); border-bottom:1px solid #292932; position:sticky; top:0; z-index:1000; }
+nav { max-width:1100px; margin:auto; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; }
+.logo { font-size:22px; font-weight:bold; letter-spacing:1px; }
+.logo span { color:#9b9bff; }
+nav ul { list-style:none; display:flex; gap:20px; }
+nav a { color:#ddd; text-decoration:none; font-size:14px; }
+nav a:hover { color:#9b9bff; }
+.hero { max-width:1100px; margin:auto; padding:80px 20px; text-align:center; }
+.hero h1 { font-size:clamp(40px,8vw,80px); margin-bottom:20px; }
+.hero h1 span { color:#9b9bff; }
+.hero p { max-width:650px; margin:auto; color:#aaa; font-size:18px; line-height:1.7; }
+.buttons { margin-top:30px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
+.button { padding:14px 24px; border-radius:10px; border:none; cursor:pointer; font-weight:bold; text-decoration:none; }
+.primary { background:#9b9bff; color:#08080b; }
+.primary:hover { background:#8585f0; }
+.secondary { background:#1b1b23; color:white; border:1px solid #30303a; }
+section { max-width:1100px; margin:auto; padding:70px 20px; }
+.section-title { font-size:32px; margin-bottom:10px; }
+.section-description { color:#999; margin-bottom:30px; }
+.search-box { margin-bottom:30px; }
+.search-box input { width:100%; padding:16px; background:#15151c; border:1px solid #30303a; border-radius:10px; color:white; font-size:16px; }
+input:focus,textarea:focus { border-color:#9b9bff !important; outline:2px solid rgba(155,155,255,0.25); }
+.products { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; }
+.product { background:#15151c; border:1px solid #292932; padding:25px; border-radius:15px; display:flex; flex-direction:column; transition:0.2s; }
+.product:hover { transform:translateY(-4px); border-color:#55556a; }
+.product-icon { font-size:40px; margin-bottom:15px; }
+.product h3 { margin-bottom:10px; }
+.product p { color:#999; line-height:1.5; margin-bottom:20px; flex-grow:1; }
+.price { font-size:22px; font-weight:bold; margin-bottom:15px; }
+.add-button { width:100%; padding:12px; background:#9b9bff; color:#08080b; border:none; border-radius:8px; cursor:pointer; font-weight:bold; }
+.add-button:hover { background:#8585f0; }
+.features { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+.feature { background:#15151c; padding:25px; border-radius:15px; border:1px solid #292932; }
+.feature-icon { font-size:30px; margin-bottom:15px; }
+.feature p { color:#999; line-height:1.6; margin-top:10px; }
+.email-tool { background:linear-gradient(135deg,#171721,#101015); border:1px solid #333342; border-radius:20px; padding:35px; }
+.email-tool label { display:block; margin-top:12px; font-size:14px; color:#ccc; }
+.email-tool input,.email-tool textarea { width:100%; padding:14px; margin-top:6px; margin-bottom:12px; border-radius:8px; border:1px solid #33333e; background:#0d0d12; color:white; }
+.email-tool textarea { min-height:120px; }
+.cart { position:fixed; right:20px; bottom:80px; width:340px; max-width:calc(100% - 40px); background:rgba(23,23,31,0.95); backdrop-filter:blur(16px); border:1px solid #353542; border-radius:15px; padding:20px; z-index:2000; display:none; box-shadow:0 10px 40px rgba(0,0,0,0.6); }
+.cart h3 { margin-bottom:15px; }
+.cart-item { padding:10px 0; border-bottom:1px solid #2c2c35; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.cart-item-info { display:flex; align-items:center; gap:8px; }
+.remove-btn { background:none; border:none; color:#ff5555; cursor:pointer; font-weight:bold; }
+.cart-total { margin-top:15px; font-size:20px; font-weight:bold; }
+.checkout { width:100%; padding:13px; margin-top:15px; border:none; border-radius:8px; background:#9b9bff; color:#08080b; font-weight:bold; cursor:pointer; }
+.close-cart { float:right; cursor:pointer; color:#aaa; }
+.cart-button { position:fixed; right:20px; bottom:20px; background:#9b9bff; color:#08080b; border:none; padding:15px 20px; border-radius:50px; cursor:pointer; font-weight:bold; z-index:1500; }
+.payment-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(8px); display:none; justify-content:center; align-items:center; padding:20px; z-index:5000; }
+.payment-box { width:100%; max-width:500px; max-height:90vh; overflow-y:auto; background:#15151c; border:1px solid #3b3b48; border-radius:20px; padding:25px; }
+.payment-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.payment-close { background:none; border:none; color:#aaa; font-size:25px; cursor:pointer; }
+.payment-total { background:#0d0d12; border:1px solid #292932; border-radius:12px; padding:18px; margin-bottom:20px; display:flex; justify-content:space-between; font-size:20px; font-weight:bold; }
+.payment-methods { display:grid; gap:10px; }
+.payment-method { width:100%; padding:16px; background:#1b1b23; border:1px solid #33333e; border-radius:12px; color:white; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; }
+.payment-method:hover { border-color:#9b9bff; background:#22222c; }
+.payment-method small { color:#999; }
+.payment-status { margin-top:20px; padding:15px; border-radius:10px; background:#0d0d12; color:#aaa; line-height:1.5; display:none; }
+footer { background:#08080b; border-top:1px solid #22222a; text-align:center; padding:40px 20px; color:#777; }
+footer strong { color:white; }
+@media(max-width:700px){ nav ul{display:none;} .hero{padding:60px 20px;} section{padding:50px 20px;} .email-tool{padding:22px;} }
+</style>
+</head>
+<body>
+
+<header><nav><div class="logo">Darlington<span>1670</span></div><ul><li><a href="#home">Home</a></li><li><a href="#marketplace">Marketplace</a></li><li><a href="#tools">Tools</a></li><li><a href="#about">About</a></li></ul></nav></header>
+
+<div class="hero" id="home">
+<h1>Welcome to <span>Darlington1670</span></h1>
+<p>Discover useful digital links, tutorials, resources and tools designed to make the internet easier and more useful.</p>
+<div class="buttons"><a href="#marketplace" class="button primary">Explore Marketplace</a><a href="#tools" class="button secondary">Explore Tools</a></div>
+</div>
+
+<section id="marketplace">
+<h2 class="section-title">Digital Marketplace</h2>
+<p class="section-description">Find useful digital resources, links and tutorials.</p>
+<div class="search-box"><input type="text" id="searchInput" placeholder="Search Darlington1670..." onkeyup="searchProducts()"></div>
+<div class="products" id="products">
+<div class="product" data-name="student study links"><div class="product-icon">📚</div><h3>Student Study Links</h3><p>A collection of useful online resources for students.</p><div class="price">R10</div><button class="add-button" onclick="addToCart('Student Study Links',10)">Add to Cart</button></div>
+<div class="product" data-name="engineering resources"><div class="product-icon">⚡</div><h3>Engineering Resources</h3><p>Useful engineering learning resources collected in one place.</p><div class="price">R15</div><button class="add-button" onclick="addToCart('Engineering Resources',15)">Add to Cart</button></div>
+<div class="product" data-name="website tutorial"><div class="product-icon">💻</div><h3>Website Tutorial</h3><p>Learn the basics of creating your own website.</p><div class="price">R20</div><button class="add-button" onclick="addToCart('Website Tutorial',20)">Add to Cart</button></div>
+<div class="product" data-name="digital tools pack"><div class="product-icon">🛠️</div><h3>Digital Tools Pack</h3><p>A collection of useful websites and online tools.</p><div class="price">R25</div><button class="add-button" onclick="addToCart('Digital Tools Pack',25)">Add to Cart</button></div>
+</div>
+</section>
+
+<section id="about">
+<h2 class="section-title">What is Darlington1670?</h2>
+<p class="section-description">One place for useful digital resources.</p>
+<div class="features">
+<div class="feature"><div class="feature-icon">🔗</div><h3>Useful Links</h3><p>Discover websites and online resources that can actually be useful.</p></div>
+<div class="feature"><div class="feature-icon">📖</div><h3>Tutorials</h3><p>Learn new skills through simple, easy-to-follow guides.</p></div>
+<div class="feature"><div class="feature-icon">💡</div><h3>Digital Ideas</h3><p>Find tools and ideas that can help you online.</p></div>
+<div class="feature"><div class="feature-icon">📱</div><h3>Mobile Friendly</h3><p>Darlington1670 works on phones and computers.</p></div>
+</div>
+</section>
+
+<section id="tools">
+<h2 class="section-title">Future Email Tool</h2>
+<p class="section-description">Write an email and choose when you want it sent.</p>
+<div class="email-tool">
+<label>Email address</label><input type="email" id="emailAddress" placeholder="example@email.com">
+<label>Message</label><textarea id="emailMessage" placeholder="Write your message..."></textarea>
+<label>Send date</label><input type="date" id="sendDate">
+<label>Send time</label><input type="time" id="sendTime">
+<button class="button primary" onclick="scheduleEmail()">Schedule Email</button>
+</div>
+</section>
+
+<button class="cart-button" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+
+<div class="cart" id="cart">
+<button class="close-cart" onclick="closeCart()">✕</button>
+<h3>Your Cart</h3>
+<div id="cartItems">Your cart is empty.</div>
+<div class="cart-total">Total: R<span id="cartTotal">0</span></div>
+<button class="checkout" onclick="checkout()">Continue to Checkout</button>
+</div>
+
+<div class="payment-overlay" id="paymentOverlay">
+<div class="payment-box">
+<div class="payment-header"><h2>Choose Payment</h2><button class="payment-close" onclick="closePayment()">✕</button></div>
+<div class="payment-total"><span>Order Total</span><span>R<span id="paymentTotal">0</span></span></div>
+<p style="color:#999;margin-bottom:15px;">Choose how you want to pay.</p>
+<div class="payment-methods">
+<button class="payment-method" onclick="payWithPayPal()"><div><strong>🅿️ PayPal</strong><br><small>Pay securely with PayPal</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithCard()"><div><strong>💳 Credit / Debit Card</strong><br><small>Visa / Mastercard</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithEFT()"><div><strong>🏦 Instant EFT</strong><br><small>Online bank payment</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithGooglePay()"><div><strong>🟢 Google Pay</strong><br><small>Fast mobile payment</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithApplePay()"><div><strong> Apple Pay</strong><br><small>Fast mobile payment</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithSnapScan()"><div><strong>📷 SnapScan</strong><br><small>Scan and pay</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithZapper()"><div><strong>🔲 Zapper</strong><br><small>Scan to pay</small></div><span>›</span></button>
+<button class="payment-method" onclick="payWithPayflex()"><div><strong>💰 Payflex</strong><br><small>Buy now, pay later</small></div><span>›</span></button>
+</div>
+<div class="payment-status" id="paymentStatus"></div>
+</div>
+</div>
+
+<footer><p>© 2026 <strong>Darlington1670</strong></p><p>Digital resources. Useful links. Better tools.</p></footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('darlington_cart') || '[]');
+let total = cart.reduce((s,i)=>s+i.price,0);
+function saveCart(){ localStorage.setItem('darlington_cart', JSON.stringify(cart)); }
+function addToCart(name,price){ cart.push({name,price}); total+=price; saveCart(); updateCart(); alert(name + ' added to cart'); }
+function removeFromCart(index){ total-=cart[index].price; cart.splice(index,1); saveCart(); updateCart(); }
+function updateCart(){
+  const cartItems=document.getElementById("cartItems");
+  document.getElementById("cartCount").innerText=cart.length;
+  document.getElementById("cartTotal").innerText=total;
+  if(cart.length===0){ cartItems.innerHTML="Your cart is empty."; return; }
+  cartItems.innerHTML="";
+  cart.forEach((item,index)=>{
+    const div=document.createElement("div"); div.className="cart-item";
+    div.innerHTML=`<span>${item.name}</span><div class="cart-item-info"><strong>R${item.price}</strong><button class="remove-btn" onclick="removeFromCart(${index})">✕</button></div>`;
+    cartItems.appendChild(div);
+  });
+}
+function openCart(){ document.getElementById("cart").style.display="block"; }
+function closeCart(){ document.getElementById("cart").style.display="none"; }
+function checkout(){ if(cart.length===0){ alert("Your cart is empty."); return; } document.getElementById("paymentTotal").innerText=total; document.getElementById("paymentOverlay").style.display="flex"; }
+function closePayment(){ document.getElementById("paymentOverlay").style.display="none"; }
+function paymentMessage(m){ const s=document.getElementById("paymentStatus"); s.innerText=m; s.style.display="block"; }
+function payWithPayPal(){ paymentMessage("PayPal selected. Connect your PayPal Business payment link here before accepting real payments."); }
+function payWithCard(){ paymentMessage("Card payment selected. Connect this button to your payment gateway's secure card checkout."); }
+function payWithEFT(){ paymentMessage("Instant EFT selected. Connect this button to your payment gateway's secure EFT checkout."); }
+function payWithGooglePay(){ paymentMessage("Google Pay selected. Must be enabled through your payment provider."); }
+function payWithApplePay(){ paymentMessage("Apple Pay selected. Must be enabled through your payment provider."); }
+function payWithSnapScan(){ paymentMessage("SnapScan selected. Connect SnapScan through your payment gateway."); }
+function payWithZapper(){ paymentMessage("Zapper selected. Connect Zapper through your payment gateway."); }
+function payWithPayflex(){ paymentMessage("Payflex selected. Connect Payflex through your payment gateway."); }
+function searchProducts(){
+  const search=document.getElementById("searchInput").value.toLowerCase();
+  document.querySelectorAll(".product").forEach(p=>{
+    p.style.display = p.dataset.name.includes(search) ? "" : "none";
+  });
+}
+function scheduleEmail(){
+  const email=document.getElementById("emailAddress").value;
+  const message=document.getElementById("emailMessage").value;
+  const date=document.getElementById("sendDate").value;
+  const time=document.getElementById("sendTime").value;
+  if(!email||!message||!date||!time){ alert("Please complete all email fields."); return; }
+  alert("Your email request has been created. A real email service must be connected before Darlington1670 can actually send it.");
+}
+document.getElementById("paymentOverlay").addEventListener("click", function(e){ if(e.target===this) closePayment(); });
+updateCart();
+</script>
+</body>
+</html>
